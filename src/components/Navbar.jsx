@@ -15,10 +15,12 @@ export default function Navbar() {
     const menuItems = isLoggedIn
         ? [
             { name: "Home", href: "/" },
+            { name: "All Item", href: "/allitems" },
             { name: "Order Item", href: "/order" },
         ]
         : [
             { name: "Home", href: "/" },
+            { name: "All Item", href: "/allitems" },
             { name: "Order Item", href: "/order" },
             { name: "Login", href: "/login" },
             { name: "Register", href: "/register" },
@@ -26,18 +28,18 @@ export default function Navbar() {
 
     const linkClass = (href) =>
         `relative px-3 py-2 transition ${pathname === href
-            ? "text-green-600 font-semibold"
-            : "text-gray-700 hover:text-green-600"
+            ? "text-[#F9F8ED] font-semibold"
+            : "text-[#E5E3D4] hover:text-[#E0DECA]"
         }`;
 
     return (
-        <nav className="sticky top-0 z-50 bg-white/80 backdrop-blur shadow-md border-b">
+        <nav className="sticky top-0 z-50 bg-[#101828] shadow-md border-b">
             <div className="max-w-7xl mx-auto flex items-center justify-between px-4 py-3">
 
                 {/* Logo */}
                 <Link
                     href="/"
-                    className="text-2xl font-bold text-green-600 tracking-tight"
+                    className="text-2xl font-bold text-white tracking-tight"
                 >
                     My Restaurant
                 </Link>
@@ -51,7 +53,7 @@ export default function Navbar() {
 
                                 {/* Active underline */}
                                 {pathname === item.href && (
-                                    <span className="absolute left-0 bottom-0 w-full h-[2px] bg-green-600 rounded-full" />
+                                    <span className="absolute left-0 bottom-0 w-full h-[2px] bg-[#F9F8ED] rounded-full" />
                                 )}
                             </Link>
                         </li>
@@ -73,7 +75,7 @@ export default function Navbar() {
 
                 {/* Mobile Button */}
                 <button
-                    className="md:hidden text-3xl text-gray-700"
+                    className="md:hidden text-3xl text-white"
                     onClick={() => setOpen(!open)}
                 >
                     {open ? "✕" : "☰"}
@@ -91,7 +93,7 @@ export default function Navbar() {
                             <Link
                                 href={item.href}
                                 onClick={() => setOpen(false)}
-                                className="block px-3 py-2 rounded-lg text-gray-700 hover:bg-green-50 hover:text-green-600"
+                                className="block px-3 py-2 rounded-lg text-white hover:bg-[#E5E3D4] hover:text-[#F9F8ED]"
                             >
                                 {item.name}
                             </Link>

@@ -61,11 +61,11 @@ export default function BannerSlider() {
                                 </p>
 
                                 <div className="mt-6 flex gap-4">
-                                    <button className="bg-orange-500 hover:bg-orange-600 px-5 py-2 rounded-lg font-medium transition">
+                                    <button className="cursor-pointer bg-orange-500 hover:bg-orange-600 px-5 py-2 rounded-lg font-medium transition">
                                         Order Now
                                     </button>
 
-                                    <button className="border border-white px-5 py-2 rounded-lg hover:bg-white hover:text-black transition">
+                                    <button className="cursor-pointer border border-white px-5 py-2 rounded-lg hover:bg-white hover:text-black transition">
                                         View Menu
                                     </button>
                                 </div>
