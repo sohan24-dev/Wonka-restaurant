@@ -1,18 +1,34 @@
 "use client";
 
+
 import { AllDataCollect } from '@/context/AllData';
 import Image from 'next/image';
+import { useRouter } from 'next/navigation';
 import React, { useContext } from 'react';
+import { toast } from 'react-toastify';
 
-const Orderlist = ({ order }) => {
+const Orderlist = ({ order, handleDelete }) => {
     const { session } = useContext(AllDataCollect);
 
     // console.log(session?.user, "session");
     // console.log(order?.item?.email, "order");
 
+    const router = useRouter();
+
+
+    const deleteItem = async (id) => {
+        const data = await handleDelete(id);
+
+        if (data.deletedCount > 0) {
+            toast.success("Order deleted successfully");
+            // window.location.reload();
+            router.refresh();
+        }
+    };
+
     return (
         <div>
-            {session?.user.email === order?.item?.email && (
+            {session?.user?.email === order?.item?.email && (
 
                 <div className="flex flex-col sm:flex-row bg-white rounded-2xl shadow-md hover:shadow-xl transition overflow-hidden border my-3 mx-4">
 
@@ -59,7 +75,7 @@ const Orderlist = ({ order }) => {
 
                             {/* Cancel Button */}
                             <button
-                                onClick={() => handleCancel(order?._id)}
+                                onClick={() => deleteItem(order?._id)}
                                 className="px-4 py-2 text-sm font-semibold rounded-lg bg-red-500 text-white cursor-pointer hover:bg-red-600 transition"
                             >
                                 Cancel Order

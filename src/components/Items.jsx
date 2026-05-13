@@ -67,7 +67,7 @@ export default function Items({ item, orderlist }) {
 
                     <button
                         onClick={handleOrder}
-                        className="flex-1 bg-orange-500 text-white py-2 rounded-lg"
+                        className="cursor-pointer flex-1 bg-orange-500 text-white py-2 rounded-lg"
                     >
                         Order Now
                     </button>

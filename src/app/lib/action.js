@@ -1,7 +1,9 @@
+import { toast } from "react-toastify";
+
 export const orderlist = async (item) => {
     'use server';
 
-    console.log(item);
+    // console.log(item);
 
     const response = await fetch("https://wonka-server.onrender.com/orderlist", {
         method: "POST",
@@ -12,4 +14,19 @@ export const orderlist = async (item) => {
     });
 
     return await response.json();
+};
+
+
+export const handleDelete = async (id) => {
+    'use server'
+    const res = await fetch(
+        `https://wonka-server.onrender.com/orderlist/${id}`,
+        {
+            method: "DELETE",
+            cache: "no-store",
+        }
+    );
+
+    return await res.json();
+
 };
