@@ -10,7 +10,7 @@ export const orderlist = async (item) => {
         headers: {
             "Content-Type": "application/json",
         },
-        body: JSON.stringify({ item }),
+        body: JSON.stringify(item),
     });
 
     return await response.json();
