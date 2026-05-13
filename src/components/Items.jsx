@@ -1,12 +1,27 @@
 "use client"
+import { authClient } from "@/app/lib/auth-client";
+import { email } from "better-auth";
 import Image from "next/image";
 import Link from "next/link";
 
 export default function Items({ item, orderlist }) {
+    const { data: session, refetch } = authClient.useSession();
+    // console.log(session);
+    const email = session?.user?.email;
+    const id = session?.user?.id;
+    const { strMeal, strMealThumb, price } = item;
 
+    console.log(strMeal, strMealThumb, price, email);
 
+    const orderitem = {
+        name: strMeal,
+        img: strMealThumb,
+        price,
+        email,
+        id
+    };
     const handleOrder = async () => {
-        await orderlist(item);
+        await orderlist(orderitem);
 
     };
     return (
