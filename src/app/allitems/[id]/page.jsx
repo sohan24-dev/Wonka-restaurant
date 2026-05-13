@@ -1,13 +1,13 @@
 import { detailsItems } from "@/app/lib/data";
 import Image from "next/image";
 import Link from "next/link";
+import { toast } from "react-toastify";
 
 
 const DetailsPage = async ({ params }) => {
     const { id } = await params
     // console.log(id);
     const meal = await detailsItems(id)
-
     return (
         <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 bg-[#F7F5EB]">
 
@@ -81,10 +81,6 @@ const DetailsPage = async ({ params }) => {
 
                     {/* Buttons */}
                     <div className="flex flex-col sm:flex-row gap-4 pt-4">
-
-                        <button className="w-full sm:w-auto bg-orange-500 hover:bg-orange-600 text-white px-8 py-3 rounded-xl font-medium transition">
-                            Order Now
-                        </button>
                         <Link href={'/allitems'} className="w-full sm:w-auto bg-blue-500 hover:bg-blue-600 text-white px-8 py-3 rounded-xl font-medium transition">Back</Link>
 
                     </div>

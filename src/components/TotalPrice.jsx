@@ -26,7 +26,7 @@ const TotalPrice = ({ allitems }) => {
             {/* Right side */}
             <div className="text-right">
                 <h2 className="text-2xl font-extrabold text-orange-500 tracking-wide">
-                    {totalPrice} TK
+                    {totalPrice}Tk
                 </h2>
             </div>
         </div>

@@ -11,13 +11,25 @@ import {
     TextArea,
     TextField,
 } from "@heroui/react";
-import { redirect } from "next/navigation";
+import { redirect, useSearchParams } from "next/navigation";
 import { toast } from "react-toastify";
 import { authClient } from "../lib/auth-client";
 import Link from "next/link";
 import { GrGoogle } from "react-icons/gr";
+import { useEffect, useRef } from "react";
 
 const LoginPage = () => {
+    const searchParams = useSearchParams();
+    const error = searchParams.get("error");
+
+    const toastShown = useRef(false);
+
+    useEffect(() => {
+        if (error === "login_required" && !toastShown.current) {
+            toast.error("Please login first");
+            toastShown.current = true;
+        }
+    }, [error]);
     const handleGoogleSignIn = async () => {
         const data = await authClient.signIn.social({
             provider: "google",

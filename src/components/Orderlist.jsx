@@ -70,6 +70,7 @@ const Orderlist = ({ order }) => {
                 </div>
 
             )}
+            {/* TOTAL SECTION */}
 
             {/* <div className="relative w-full h-52">
                 <Image

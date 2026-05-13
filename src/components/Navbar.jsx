@@ -64,7 +64,7 @@ export default function Navbar() {
                         <button
                             onClick={async () => {
                                 await authClient.signOut();
-                                refetch();
+                                window.location.reload();
                             }}
                             className="ml-4 px-4 py-2 rounded-xl bg-red-500 cursor-pointer text-white hover:bg-red-600 transition"
                         >
