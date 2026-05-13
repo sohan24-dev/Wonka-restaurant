@@ -24,6 +24,10 @@ export const handleDelete = async (id) => {
         {
             method: "DELETE",
             cache: "no-store",
+            headers: {
+                'context-type': 'application/json'
+            },
+
         }
     );
 
