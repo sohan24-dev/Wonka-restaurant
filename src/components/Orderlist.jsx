@@ -5,25 +5,21 @@ import { AllDataCollect } from '@/context/AllData';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import React, { useContext } from 'react';
-import { toast } from 'react-toastify';
 
 const Orderlist = ({ order, handleDelete }) => {
     const { session } = useContext(AllDataCollect);
+    const router = useRouter()
 
     // console.log(session?.user, "session");
     // console.log(order?.item?.email, "order");
 
-    const router = useRouter();
+
 
 
     const deleteItem = async (id) => {
-        const data = await handleDelete(id);
+        await handleDelete(id);
+        router.refresh()
 
-        if (data.deletedCount > 0) {
-            toast.success("Order deleted successfully");
-            // window.location.reload();
-            router.refresh();
-        }
     };
 
     return (

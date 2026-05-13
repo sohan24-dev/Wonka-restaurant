@@ -23,14 +23,13 @@ export const handleDelete = async (id) => {
         `https://wonka-server.onrender.com/orderlist/${id}`,
         {
             method: "DELETE",
-            cache: "no-store",
-            headers: {
-                'context-type': 'application/json'
-            },
 
         }
+
     );
 
-    return await res.json();
+    const data = await res.json();
+    console.log(data, 'data DELETE');
+    return data
 
 };
