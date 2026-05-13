@@ -6,6 +6,7 @@ import { Pagination, Autoplay } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/pagination";
 import Image from "next/image";
+import Link from "next/link";
 
 export default function BannerSlider() {
     const slides = [
@@ -61,13 +62,13 @@ export default function BannerSlider() {
                                 </p>
 
                                 <div className="mt-6 flex gap-4">
-                                    <button className="cursor-pointer bg-orange-500 hover:bg-orange-600 px-5 py-2 rounded-lg font-medium transition">
+                                    <Link href={'/allitems'}><button className="cursor-pointer bg-orange-500 hover:bg-orange-600 px-5 py-2 rounded-lg font-medium transition">
                                         Order Now
-                                    </button>
+                                    </button></Link>
 
-                                    <button className="cursor-pointer border border-white px-5 py-2 rounded-lg hover:bg-white hover:text-black transition">
+                                    <Link href={'/allitems'}><button className="cursor-pointer border border-white px-5 py-2 rounded-lg hover:bg-white hover:text-black transition">
                                         View Menu
-                                    </button>
+                                    </button></Link>
                                 </div>
                             </div>
                         </div>
