@@ -1,4 +1,5 @@
-import Image from "next/image";
+
+import TotalPrice from "@/components/TotalPrice";
 import { orderallitems } from "../lib/data";
 import Orderlist from "@/components/Orderlist";
 
@@ -10,7 +11,8 @@ const OrderlistAll = async () => {
 
     return (
         <div className="my-2">
-            {allitems?.map((order, index) => <Orderlist key={index} order={order}></Orderlist>)}
+            {allitems?.map((order, index) => <Orderlist key={index} allitems={allitems} order={order}></Orderlist>)}
+            <TotalPrice allitems={allitems} />
         </div>
     );
 };
