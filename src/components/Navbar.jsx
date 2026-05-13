@@ -16,12 +16,12 @@ export default function Navbar() {
         ? [
             { name: "Home", href: "/" },
             { name: "All Item", href: "/allitems" },
-            { name: "Order Item", href: "/order" },
+            { name: "Order Item", href: "/orderitems" },
         ]
         : [
             { name: "Home", href: "/" },
             { name: "All Item", href: "/allitems" },
-            { name: "Order Item", href: "/order" },
+            { name: "Order Item", href: "/orderitems" },
             { name: "Login", href: "/login" },
             { name: "Register", href: "/register" },
         ];

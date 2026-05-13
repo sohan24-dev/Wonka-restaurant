@@ -11,7 +11,7 @@ export default function Items({ item, orderlist }) {
     const id = session?.user?.id;
     const { strMeal, strMealThumb, price } = item;
 
-    console.log(strMeal, strMealThumb, price, email);
+    // console.log(strMeal, strMealThumb, price, email);
 
     const orderitem = {
         name: strMeal,
