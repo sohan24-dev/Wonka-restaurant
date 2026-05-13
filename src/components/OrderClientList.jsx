@@ -3,7 +3,7 @@
 import { useContext } from "react";
 import { AllDataCollect } from "@/context/AllData";
 import Orderlist from "@/components/Orderlist";
-import TotalPrice from "@/components/TotalPrice";
+import TotalPrice from "./TotalPrice";
 
 const OrderClientList = ({ allitems, handleDelete }) => {
     const { session } = useContext(AllDataCollect);
