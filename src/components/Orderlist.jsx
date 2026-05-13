@@ -13,9 +13,9 @@ const Orderlist = ({ order, handleDelete }) => {
         await handleDelete(id);
         router.refresh();
     };
-    console.log(order, "order");
-    console.log(order?.email, "email");
-    console.log(session.user.name, "session");
+    // console.log(order, "order");
+    // console.log(order?.email, "email");
+    // console.log(session?.user?.name, "session");
 
     return (
         <div className="flex flex-col sm:flex-row bg-white rounded-2xl shadow-md hover:shadow-xl transition overflow-hidden border my-3 mx-4">

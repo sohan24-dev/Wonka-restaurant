@@ -6,7 +6,7 @@ import { handleDelete } from "../lib/action";
 
 const OrderlistAll = async () => {
     const allitems = await orderallitems();
-    console.log(allitems, 'api res');
+    // console.log(allitems, 'api res');
     // console.log(allitems?.item?.email, "email");
     return (
         <div className="my-2">
