@@ -8,8 +8,8 @@ const TotalPrice = ({ allitems }) => {
     const { session } = useContext(AllDataCollect);
 
     const totalPrice = allitems?.reduce((sum, order) => {
-        if (session?.user?.email === order?.item?.email) {
-            return sum + Number(order?.item?.price || 0);
+        if (session?.user?.email === order?.email) {
+            return sum + Number(order?.price || 0);
         }
         return sum;
     }, 0);

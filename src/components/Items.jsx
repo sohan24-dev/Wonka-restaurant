@@ -42,6 +42,7 @@ export default function Items({ item, orderlist }) {
                     src={item.strMealThumb}
                     alt={item.strMeal}
                     fill
+                    sizes="(max-width: 640px) 100vw, 224px"
                     className="object-cover"
                 />
             </div>

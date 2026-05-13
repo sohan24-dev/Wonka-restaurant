@@ -1,4 +1,4 @@
-import { toast } from "react-toastify";
+
 
 export const orderlist = async (item) => {
     'use server';
@@ -18,18 +18,14 @@ export const orderlist = async (item) => {
 
 
 export const handleDelete = async (id) => {
-    'use server'
+    "use server"
     const res = await fetch(
         `https://wonka-server.onrender.com/orderlist/${id}`,
         {
             method: "DELETE",
-
+            cache: "no-store",
         }
-
     );
 
-    const data = await res.json();
-    console.log(data, 'data DELETE');
-    return data
-
+    return await res.json();
 };
