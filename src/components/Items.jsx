@@ -12,6 +12,8 @@ export default function Items({ item, orderlist }) {
 
     const email = session?.user?.email;
     const id = session?.user?.id;
+    const name = session?.user?.name;
+    // console.log(name, 'name');
 
     const { strMeal, strMealThumb, price } = item;
 
@@ -20,7 +22,16 @@ export default function Items({ item, orderlist }) {
         img: strMealThumb,
         price,
         email,
-        id
+        id,
+        customer: name,
+        createdAt: new Date().toLocaleString("en-US", {
+            day: "numeric",
+            month: "short",
+            year: "numeric",
+            hour: "numeric",
+            minute: "2-digit",
+            hour12: true,
+        }),
     };
 
     const handleOrder = async () => {
