@@ -5,6 +5,7 @@ import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { useContext } from "react";
 import { authClient } from "@/app/lib/auth-client";
+import { toast } from "react-toastify";
 
 const Orderlist = ({ order, handleDelete }) => {
     const { session } = useContext(AllDataCollect);
@@ -12,24 +13,19 @@ const Orderlist = ({ order, handleDelete }) => {
 
     const deleteItem = async (id) => {
         try {
-            const tokenResponse = await authClient.token();
-            const token = tokenResponse?.data?.token || tokenResponse?.token;
+            const token = (await authClient.token())?.data?.token || (await authClient.token())?.token;
 
-            if (!token) {
-                alert("Authentication token is missing. Please log in again.");
-                return;
-            }
+            if (!token) return toast.error("Please login again");
 
             const res = await handleDelete(id, token);
 
-            if (res?.error) {
-                alert(`Failed to delete: ${res.message}`);
-            } else {
-                router.refresh();
-            }
+            if (res?.error) return toast.error(res.message);
+
+            toast.success("Cancelled successfully");
+            router.refresh();
+
         } catch (error) {
-            console.error("Error calling delete action:", error);
-            alert("An unexpected error occurred while deleting the order.");
+            toast.error("Something went wrong");
         }
     };
 
