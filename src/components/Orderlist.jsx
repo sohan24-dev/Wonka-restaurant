@@ -1,16 +1,19 @@
 "use client";
 
+
 import { AllDataCollect } from "@/context/AllData";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { useContext } from "react";
 
-const Orderlist = ({ order, handleDelete }) => {
+const Orderlist = ({ order, handleDelete, tokenData }) => {
     const { session } = useContext(AllDataCollect);
     const router = useRouter();
 
     const deleteItem = async (id) => {
-        await handleDelete(id);
+
+        console.log(tokenData);
+        await handleDelete(id, tokenData);
         router.refresh();
     };
     console.log(order, "order");

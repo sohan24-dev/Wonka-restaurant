@@ -18,13 +18,17 @@ export const orderlist = async (item, token) => {
 };
 
 
-export const handleDelete = async (id) => {
+export const handleDelete = async (id, token) => {
     "use server"
     const res = await fetch(
         `https://wonka-server.onrender.com/orderlist/${id}`,
         {
             method: "DELETE",
             cache: "no-store",
+            headers: {
+                "Content-Type": "application/json",
+                authorization: `Bearer ${token}`
+            },
         }
     );
 
