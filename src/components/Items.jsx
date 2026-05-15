@@ -13,27 +13,8 @@ export default function Items({ item, orderlist }) {
     const email = session?.user?.email;
     const id = session?.user?.id;
     const name = session?.user?.name;
-    // console.log(name, 'name');
 
     const { strMeal, strMealThumb, price } = item;
-
-    const orderitem = {
-        name: strMeal,
-        img: strMealThumb,
-        price,
-        email,
-        id,
-        customer: name,
-        createdAt: new Date().toLocaleString("en-US", {
-            day: "numeric",
-            month: "short",
-            year: "numeric",
-            hour: "numeric",
-            minute: "2-digit",
-            hour12: true,
-        }),
-    };
-
 
     const handleOrder = async () => {
         if (!session) {
@@ -41,16 +22,48 @@ export default function Items({ item, orderlist }) {
             router.push("/login");
             return;
         }
-        const { data: tokenData } = await authClient.token()
-        // console.log(tokenData.token);
 
-        toast.success("Order placed successfully");
-        await orderlist(orderitem, tokenData);
+        try {
+            const tokenResponse = await authClient.token();
+            const token = tokenResponse?.data?.token || tokenResponse?.token;
+
+            if (!token) {
+                toast.error("Authentication token missing. Please log in again.");
+                return;
+            }
+
+            const orderitem = {
+                name: strMeal,
+                img: strMealThumb,
+                price,
+                email,
+                id,
+                customer: name,
+                createdAt: new Date().toLocaleString("en-US", {
+                    day: "numeric",
+                    month: "short",
+                    year: "numeric",
+                    hour: "numeric",
+                    minute: "2-digit",
+                    hour12: true,
+                }),
+            };
+
+            const result = await orderlist(orderitem, token);
+
+            if (result && !result.error && !result.message) {
+                toast.success("Order placed successfully");
+                router.refresh();
+            } else {
+                toast.error(result?.message || "Failed to place order");
+            }
+        } catch (error) {
+            toast.error("An error occurred while creating your order.");
+        }
     };
 
     return (
         <div className="w-full rounded-2xl shadow-lg border bg-[#E9E3DF] overflow-hidden">
-
             <div className="relative w-full h-48 sm:h-56 md:h-64">
                 <Image
                     src={item.strMealThumb}

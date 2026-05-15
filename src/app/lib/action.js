@@ -3,18 +3,25 @@
 export const orderlist = async (item, token) => {
     'use server';
 
-    // console.log(item);
+    try {
+        const response = await fetch("https://wonka-server.onrender.com/orderlist", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                "Authorization": `Bearer ${token}`
+            },
+            body: JSON.stringify(item),
+        });
 
-    const response = await fetch("https://wonka-server.onrender.com/orderlist", {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json",
-            authorization: `Bearer ${token?.token}`
-        },
-        body: JSON.stringify(item),
-    });
+        if (!response.ok) {
+            const errData = await response.json().catch(() => ({}));
+            return { error: true, message: errData.message || "Failed request validation" };
+        }
 
-    return await response.json();
+        return await response.json();
+    } catch (error) {
+        return { error: true, message: "Server connection failed" };
+    }
 };
 
 
