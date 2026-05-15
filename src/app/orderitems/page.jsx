@@ -1,4 +1,3 @@
-
 import { orderallitems } from "../lib/data";
 import Orderlist from "@/components/Orderlist";
 import TotalPrice from "@/components/TotalPrice";
@@ -6,21 +5,20 @@ import { handleDelete } from "../lib/action";
 import { authClient } from "../lib/auth-client";
 
 const OrderlistAll = async () => {
-    const allitems = await orderallitems();
-    const { data: tokenData } = await authClient.token()
-    // console.log(allitems, 'api res');
-    // console.log(allitems?.item?.email, "email");
+    const allitems = await orderallitems() || [];
+    const tokenResponse = await authClient.token();
+    const token = tokenResponse?.data?.token || tokenResponse?.token || "";
+
     return (
         <div className="my-2">
             {allitems.map((order) => (
                 <Orderlist
                     key={order._id}
                     order={order}
-                    tokenData={tokenData}
+                    tokenData={token}
                     handleDelete={handleDelete}
                 />
             ))}
-
             <TotalPrice allitems={allitems} />
         </div>
     );
