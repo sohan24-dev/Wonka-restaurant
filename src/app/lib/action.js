@@ -28,18 +28,34 @@ export const orderlist = async (item, token) => {
 
 
 export const handleDelete = async (id, token) => {
-    "use server"
-    const res = await fetch(
-        `https://wonka-server.onrender.com/orderlist/${id}`,
-        {
-            method: "DELETE",
-            cache: "no-store",
-            headers: {
-                "Content-Type": "application/json",
-                authorization: `Bearer ${token}`
-            },
-        }
-    );
+    "use server";
 
-    return await res.json();
+    try {
+        const res = await fetch(
+            `https://wonka-server.onrender.com/orderlist/${id}`,
+            {
+                method: "DELETE",
+                headers: {
+                    "Content-Type": "application/json",
+                    authorization: `Bearer ${token}`
+                },
+            }
+        );
+
+        if (!res.ok) {
+            console.error("Failed to delete from backend:", res.statusText);
+            return { error: true, message: "Could not delete the item." };
+        }
+
+        const data = await res.json();
+
+        revalidatePath('/orderlist');
+        revalidatePath('/', 'layout');
+
+        return data;
+
+    } catch (error) {
+        console.error("Server Action Delete Error:", error);
+        return { error: true, message: "Network connection failed." };
+    }
 };

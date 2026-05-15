@@ -2,12 +2,11 @@ import { orderallitems } from "../lib/data";
 import Orderlist from "@/components/Orderlist";
 import TotalPrice from "@/components/TotalPrice";
 import { handleDelete } from "../lib/action";
-import { authClient } from "../lib/auth-client";
+
+export const dynamic = 'force-dynamic';
 
 const OrderlistAll = async () => {
     const allitems = await orderallitems() || [];
-    const tokenResponse = await authClient.token();
-    const token = tokenResponse?.data?.token || tokenResponse?.token || "";
 
     return (
         <div className="my-2">
@@ -15,7 +14,6 @@ const OrderlistAll = async () => {
                 <Orderlist
                     key={order._id}
                     order={order}
-                    tokenData={token}
                     handleDelete={handleDelete}
                 />
             ))}
