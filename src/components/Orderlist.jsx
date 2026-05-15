@@ -11,9 +11,14 @@ const Orderlist = ({ order, handleDelete }) => {
     const { session } = useContext(AllDataCollect);
     const router = useRouter();
 
+    const userEmail = session?.user?.email;
+
+    // ❌ removed: console.log(userOrders);
+
     const deleteItem = async (id) => {
         try {
-            const token = (await authClient.token())?.data?.token || (await authClient.token())?.token;
+            const tokenData = await authClient.token();
+            const token = tokenData?.data?.token || tokenData?.token;
 
             if (!token) return toast.error("Please login again");
 
