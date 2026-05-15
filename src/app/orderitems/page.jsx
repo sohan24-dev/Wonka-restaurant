@@ -16,6 +16,7 @@ const OrderlistAll = async () => {
                 <Orderlist
                     key={order._id}
                     order={order}
+                    tokenData={tokenData}
                     handleDelete={handleDelete}
                 />
             ))}
