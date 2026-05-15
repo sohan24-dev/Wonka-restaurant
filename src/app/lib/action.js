@@ -1,6 +1,6 @@
 
 
-export const orderlist = async (item) => {
+export const orderlist = async (item, token) => {
     'use server';
 
     // console.log(item);
@@ -9,6 +9,7 @@ export const orderlist = async (item) => {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
+            authorization: `Bearer ${token?.token}`
         },
         body: JSON.stringify(item),
     });

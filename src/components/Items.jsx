@@ -34,15 +34,18 @@ export default function Items({ item, orderlist }) {
         }),
     };
 
+
     const handleOrder = async () => {
         if (!session) {
             toast.error("Please login first");
             router.push("/login");
             return;
         }
+        const { data: tokenData } = await authClient.token()
+        // console.log(tokenData.token);
 
         toast.success("Order placed successfully");
-        await orderlist(orderitem);
+        await orderlist(orderitem, tokenData);
     };
 
     return (

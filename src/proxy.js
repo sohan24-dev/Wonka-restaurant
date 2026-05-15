@@ -2,7 +2,6 @@
 import { auth } from '@/app/lib/auth'
 import { headers } from 'next/headers'
 import { NextResponse } from 'next/server'
-import { toast } from 'react-toastify'
 
 export async function proxy(request) {
     const session = await auth.api.getSession({
@@ -17,5 +16,5 @@ export async function proxy(request) {
 }
 
 export const config = {
-    matcher: ["/allitems/:path", "/orderitems"],
+    matcher: ["/allitems/:path"],
 }

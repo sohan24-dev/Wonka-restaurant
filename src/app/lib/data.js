@@ -8,8 +8,13 @@ export const orderallitems = async () => {
     const data = await res.json()
     return data
 }
-export const detailsItems = async (id) => {
-    const res = await fetch(`https://wonka-server.onrender.com/data/${id}`)
+export const detailsItems = async (id, token) => {
+    // console.log(token);
+    const res = await fetch(`https://wonka-server.onrender.com/data/${id}`, {
+        headers: {
+            authorization: `Bearer ${token}`
+        }
+    })
     const data = await res.json()
     // console.log(data);
     return data

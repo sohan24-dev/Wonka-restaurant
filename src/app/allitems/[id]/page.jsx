@@ -1,13 +1,19 @@
+import { auth } from "@/app/lib/auth";
 import { detailsItems } from "@/app/lib/data";
+import { headers } from "next/headers";
 import Image from "next/image";
 import Link from "next/link";
-import { toast } from "react-toastify";
 
 
 const DetailsPage = async ({ params }) => {
     const { id } = await params
-    // console.log(id);
-    const meal = await detailsItems(id)
+    const { token } = await auth.api.getToken({
+        headers:
+            await headers()
+
+    })
+    // console.log(token);
+    const meal = await detailsItems(id, token)
     return (
         <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 bg-[#F7F5EB]">
 
