@@ -18,6 +18,7 @@ export const orderlist = async (item, token) => {
             return { error: true, message: errData.message || "Failed request validation" };
         }
 
+        revalidatePath('/orderlist');
         return await response.json();
     } catch (error) {
         return { error: true, message: "Server connection failed" };

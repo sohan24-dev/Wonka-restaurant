@@ -4,7 +4,11 @@ export const getitems = async () => {
     return data
 }
 export const orderallitems = async () => {
-    const res = await fetch('https://wonka-server.onrender.com/orderlist')
+    const res = await fetch('https://wonka-server.onrender.com/orderlist',
+        {
+            cache: 'no-store'
+        }
+    )
     const data = await res.json()
     return data
 }
